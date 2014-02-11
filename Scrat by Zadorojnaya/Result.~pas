@@ -1,0 +1,56 @@
+unit Result;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, MPlayer, frxpngimage, ExtCtrls;
+
+type
+  TResultForm = class(TForm)
+    Label1: TLabel;
+    SpeedButton1: TSpeedButton;
+    MediaPlayer1: TMediaPlayer;
+    Image1: TImage;
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ResultForm: TResultForm;
+
+implementation
+uses Igra;
+
+{$R *.dfm}
+
+procedure TResultForm.SpeedButton1Click(Sender: TObject);
+begin
+  {IgraForm.FormCreate(IgraForm,path);   }
+  MediaPlayer1.Close;
+  Close;
+end;
+
+
+
+procedure TResultForm.FormActivate(Sender: TObject);
+begin
+ IgraForm.Timer1.Enabled:=False;
+  if (IgraForm.CheckBox1.Checked=true) and (Label1.Caption='ньхайю!!!') then begin
+   MediaPlayer1.FileName:=ExtractFilePath(Application.ExeName) + 'Res\1.MID';
+   MediaPlayer1.Open;
+   MediaPlayer1.Play;
+ end;
+
+ if (IgraForm.CheckBox1.Checked=true) and (Label1.Caption='онаедю!!!') then begin
+   MediaPlayer1.FileName:=ExtractFilePath(Application.ExeName) + 'Res\2.MID';
+   MediaPlayer1.Open;
+   MediaPlayer1.Play;
+ end;
+end;
+
+end.
